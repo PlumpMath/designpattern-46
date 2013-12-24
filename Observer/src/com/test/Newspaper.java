@@ -27,8 +27,10 @@ public class Newspaper extends java.util.Observable{
 		this.content = content;
 		this.setChanged();
 		//推模型
-		this.notifyObservers(content);
+		//this.notifyObservers(content);
 		
+		//拉模型
+		this.notifyObservers();
 	}
 	
 }

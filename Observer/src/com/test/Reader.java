@@ -27,7 +27,11 @@ public class Reader implements Observer{
 		// TODO Auto-generated method stub
 		
 		//采用推模型
-		System.out.println(name+"收到报纸了，阅读先。目标推送过来的内容是===="+arg);
+		//System.out.println(name+"收到报纸了，阅读先。目标推送过来的内容是===="+arg);
+		
+		//采用拉模型
+		System.out.println(name+"收到报纸了，阅读它。主动到目标对象拉的内容是===="+
+				((Newspaper)o).getContent());
 	}
 
 }
