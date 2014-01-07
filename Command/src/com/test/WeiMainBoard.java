@@ -19,5 +19,12 @@ public class WeiMainBoard implements MainBoardApi {
 		System.out.println("机器已经正常打开，请操作");
 
 	}
-
+	
+	/**
+	 * 真正的重新启动机器命令的实现
+	 */
+	public void reset(){
+		System.out.println("微星主板现在正在重新启动计算机，请稍后...");
+		System.out.println("机器已经正常打开，请操作");
+	}
 }
