@@ -1,12 +1,12 @@
 package com.test4;
 
 /**
- * 命令对象，绿豆排骨煲
+ * 命令对象，北京烤鸭
  * @author zhang
  *
  */
-public class ChopCommand implements Command {
-	
+public class DuckCommand implements Command {
+
 	/**
 	 * 持有具体做菜的厨师对象
 	 */
@@ -19,11 +19,10 @@ public class ChopCommand implements Command {
 		this.cookApi = cookApi;
 	}
 	
-	
 	public void execute() {
-		this.cookApi.cook(tableNum,"绿豆排骨煲");
+		this.cookApi.cook(tableNum,"北京烤鸭");
 	}
-
+	
 	/**
 	 * 点菜的桌号
 	 */
@@ -33,7 +32,7 @@ public class ChopCommand implements Command {
 	 * 构造函数，传入点菜的桌号
 	 * @param tableNum 点菜的桌号
 	 */
-	public ChopCommand(int tableNum){
+	public DuckCommand(int tableNum){
 		this.tableNum = tableNum;
 	}
 
@@ -41,5 +40,4 @@ public class ChopCommand implements Command {
 		// TODO Auto-generated method stub
 		return tableNum;
 	}
-
 }
