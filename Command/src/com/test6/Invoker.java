@@ -2,23 +2,12 @@ package com.test6;
 
 public class Invoker {
 	/**
-	 * 持有命令对象
-	 */
-	private Command cmd = null;
-	
-	/**
-	 * 设置命令对象
-	 * @param cmd 命令对象
-	 */
-	public void setCommand(Command cmd){
-		this.cmd = cmd;
-	}
-	
-	/**
 	 * 开始打印
 	 */
-	public void startPrint(){
+	public void startPrint(Command cmd){
+		System.out.println("在Invoker中，输出服务前");
 		//执行命令的功能
-		this.cmd.execute();
+		cmd.execute();
+		System.out.println("输出服务结束");
 	}
 }
