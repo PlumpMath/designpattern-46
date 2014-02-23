@@ -1,4 +1,5 @@
-package com.test2;
+package com.test3;
+import java.util.Iterator;
 
 public class Client {
 
@@ -19,15 +20,9 @@ public class Client {
 	}
 	
 	private static void test(Iterator it){
-		//循环输出聚合对象中的值
-		//首先设置迭代器到第一个元素
-		it.first();
-		while(!it.isDone()){
-			//取出当前的元素来
-			Object obj = it.currentItem();
-			System.out.println("the obj=="+obj);
-			//如果还没有迭代到最后，那么就向下迭代一个
-			it.next();
+		while(it.hasNext()){
+			PayModel pm =(PayModel)it.next();
+			System.out.println(pm);
 		}
 	}
 }
