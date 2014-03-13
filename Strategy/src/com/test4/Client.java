@@ -22,6 +22,11 @@ public class Client {
 		PaymentContext ctx3 = new PaymentContext2("小王",
 					9000, "010998877656", strategyCard);
 		ctx3.payNow();
+		
+		//测试新添加的支付方式
+		PaymentStrategy strategyCard2 = new Card2("010543232234");
+		PaymentContext ctx4 = new PaymentContext("小张", 9000, strategyCard2);
+		ctx4.payNow();	
 	}
 
 }
