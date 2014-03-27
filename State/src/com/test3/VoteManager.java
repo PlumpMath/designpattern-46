@@ -52,7 +52,7 @@ public class VoteManager {
 		if(oldVoteCount == 1){
 			//正常投票
 			//记录到投票记录中
-			state = new NormalVoteState();
+			state = new NormalVoteState2();
 		}else if(oldVoteCount > 1 && oldVoteCount < 5){
 			//重复投票
 			//暂时不做处理
@@ -61,9 +61,11 @@ public class VoteManager {
 			//恶意投票
 			//取消用户的投票资格，并取消投票记录
 			state = new SpiteVoteState();
-		}else if(oldVoteCount >= 8){
+		}else if(oldVoteCount >= 8 && oldVoteCount < 10){
 			//黑名单
 			//加入黑名单，禁止登录系统
+			state = new BlackWarnVoteState();
+		}else if(oldVoteCount >=10){
 			state = new BlackVoteState();
 		}
 		
