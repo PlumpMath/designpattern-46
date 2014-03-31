@@ -1,4 +1,6 @@
 package com.test5;
+
+import java.util.Scanner;
 /**
  * 处理项目经理的审核，处理后可能对应部门经理审核或审核结束之中的一种
  * @author zhang
@@ -7,26 +9,42 @@ package com.test5;
 public class ProjectManagerState implements LeaveRequestState {
 
 	public void doWork(StateMachine request) {
-		//先把业务对象造型出来
+		//先把业务对象造型回来
 		LeaveRequestModel lrm = (LeaveRequestModel)request.getBusinessVO();
-		//业务处理，把审核结果保存在数据库中
-		
-		//根据选择的结果和条件来设置下一步
-		if("同意".equals(lrm.getResult())){
-			if(lrm.getLeaveDays() > 3){
-				//如果请假天数大于三天，而且项目经理同意了，就提交给部门经理
-				request.setState(new DepManagerState());
-				//为部门经理增加一个工作
-			}else{
-				//三天以内的请假，由项目经理做主，
-				//就不用提交给部门经理了，转向审核结束状态
-				request.setState(new AuditOverState());
-				//给申请人增加一个工作，让他查看审核结果
+		System.out.println("项目经理审核中，请稍候......");
+		//模拟用户处理界面，通过控制台来读取数据
+		System.out.println(lrm.getUser()+"申请从"+lrm.getBeginDate()+
+				"开始请假"+lrm.getLeaveDays()+"天，请项目经理审核（1为同意，2为不同意）：");
+		//读取从控制台输入的数据
+		Scanner scanner = new Scanner(System.in);
+		if(scanner.hasNext()){
+			int a = scanner.nextInt();
+			//设置回到上下文
+			String result = "不同意";
+			if(a == 1){
+				result = "同意";
 			}
-		}else{
+			lrm.setResult("项目经理审核结果："+result);
+			//根据选择的结果和条件来设置下一步
+			if(a == 1){
+				if(lrm.getLeaveDays() > 3){
+					//如果请假天数大于三天，而且项目经理同意了，就提交给部门经理
+					request.setState(new DepManagerState());
+					//继续执行下一步工作
+					request.doWork();
+				}else{
+					//三天以内的请假，由项目经理做主，
+					//就不用提交给部门经理了，转向审核结束状态
+					request.setState(new AuditOverState());
+					//继续执行下一步工作
+					request.doWork();
+				}
+			}else{
 			//项目经理不同意的话，也就不用提交给部门经理了，转向审核结束状态
 			request.setState(new AuditOverState());
-			//给申请人增加一个工作，让他查看审核结果
+			///继续执行下一步工作
+			request.doWork();
+			}
 		}
 	}
 
