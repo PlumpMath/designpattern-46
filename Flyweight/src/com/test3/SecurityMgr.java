@@ -31,6 +31,8 @@ public class SecurityMgr {
 	public boolean hasPermit(String user,String securityEntity,
 			String permit){
 		Collection<Flyweight> col = map.get(user);
+		System.out.println("现在测试"+securityEntity+"的"+permit+
+				"权限,map.size="+map.size());
 		if(col == null || col.size() == 0){
 			System.out.println(user+"没有登录或是没有被分配任何权限");
 			return false;
@@ -56,8 +58,23 @@ public class SecurityMgr {
 		for(String s : TestDB.colDB){
 			String ss[] = s.split(",");
 			if(ss[0].equals(user)){
-				Flyweight fm = FlyweightFactory.getInstance().getFlyweight(ss[1]+
-						","+ss[2]);
+				Flyweight fm = null;
+				if(ss[3].equals("2")){
+					//表示是组合
+					fm = new UnsharedConcreteFlyweight();
+					//获取需要的组合数据
+					String tempSs[] = TestDB.mapDB.get(ss[1]);
+					for(String tempS : tempSs){
+						Flyweight tempFm = FlyweightFactory.getInstance()
+								.getFlyweight(tempS);
+						//把这个对象加入到组合对象中
+						fm.add(tempFm);
+					}
+				}else{
+					fm = FlyweightFactory.getInstance().getFlyweight(ss[1]+
+							","+ss[2]);
+				}
+				
 				col.add(fm);
 			}
 		}

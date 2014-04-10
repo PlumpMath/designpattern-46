@@ -41,5 +41,9 @@ public class AuthorizationFlyweight implements Flyweight {
 		}
 		return false;
 	}
+	
+	public void add(Flyweight f){
+		throw new UnsupportedOperationException("对象不支持这个功能");
+	}
 
 }

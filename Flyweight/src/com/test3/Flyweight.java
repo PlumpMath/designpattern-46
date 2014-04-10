@@ -12,4 +12,10 @@ public interface Flyweight {
 	 * @return	true表示匹配，false表示不匹配
 	 */
 	public boolean match(String securityEntity,String permit);
+	
+	/**
+	 * 为Flyweight添加子Flyweight对象
+	 * @param f 被添加的子Flyweight对象
+	 */
+	public void add(Flyweight f);
 }
