@@ -1,4 +1,7 @@
-package com.test3;
+package com.test4;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -11,21 +14,21 @@ import org.w3c.dom.NodeList;
  */
 public class Context {
 	/**
-	 * 上一个被处理的元素
-	 */
-	private Element preEle = null;
-	
-	/**
 	 * Dom解析xml的Document对象
 	 */
 	private Document document = null;
 	
-	public Element getPreEle() {
-		return preEle;
+	/**
+	 *上一次被处理的多个元素 
+	 */
+	private List<Element> preEles = new ArrayList<Element>();
+
+	public List<Element> getPreEles() {
+		return preEles;
 	}
 
-	public void setPreEle(Element preEle) {
-		this.preEle = preEle;
+	public void setPreEles(List<Element> preEles) {
+		this.preEles = preEles;
 	}
 
 	public Document getDocument() {
@@ -46,26 +49,27 @@ public class Context {
 	 * 重新初始化上下文
 	 */
 	public void reInit(){
-		preEle = null;
+		preEles = new ArrayList<Element>();
 	}
 	
 	/**
 	 * 各个Expression公共使用的方法
-	 * 根据父元素和当前元素名称来获取当前元素
+	 * 根据父元素和当前元素名称来获取当前的多个元素的集合
 	 * @param pEle	父元素
 	 * @param eleName	当前元素的名称
-	 * @return	找到的当前元素
+	 * @return	当前的多个元素的集合
 	 */
-	public Element getNowEle(Element pEle,String eleName){
+	public List<Element> getNowEles(Element pEle,String eleName){
+		List<Element> elements = new ArrayList<Element>();
 		NodeList tempNodeList = pEle.getChildNodes();
 		for(int i=0;i<tempNodeList.getLength();i++){
 			if(tempNodeList.item(i) instanceof Element){
 				Element nowEle =  (Element)tempNodeList.item(i);
 				if(nowEle.getTagName().equals(eleName)){
-					return nowEle;
+					elements.add(nowEle);
 				}
 			}
 		}
-		return null;
+		return elements;
 	}
 }
