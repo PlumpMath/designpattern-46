@@ -1,0 +1,20 @@
+package com.test6;
+/**
+ * 装饰器的接口，需要和被装饰的对象实现同样的接口
+ * @author zhang
+ *
+ */
+public abstract class Decorator implements GoodsSaleEbi {
+	/**
+	 * 持有被装饰的组件对象
+	 */
+	protected GoodsSaleEbi ebi;
+	
+	/**
+	 * 通过构造方法传入被装饰的对象
+	 * @param ebi	被装饰的对象
+	 */
+	public Decorator(GoodsSaleEbi ebi){
+		this.ebi = ebi;
+	}
+}
