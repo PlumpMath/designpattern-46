@@ -30,7 +30,7 @@ public class DepManager extends Handler {
 			System.out.println("部门经理同意"+user+"预支差旅费用"+requestNum+"元的请求");
 			return true;
 		}else{
-			//超过5000，继续传递给级别更高的人处理
+			//超过10000，继续传递给级别更高的人处理
 			if(this.successor != null){
 				return this.successor.handlePrePreFeeRequest(user, requestNum);
 			}
