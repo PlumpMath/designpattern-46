@@ -24,6 +24,10 @@ public class Client {
 		//要对客户进行偏好分析，传入偏好分析的Visitor
 		PredilectionAnalyzeVisitor paVisitor = new PredilectionAnalyzeVisitor();
 		os.handleRequest(paVisitor);
+		
+		//要对客户进行价值分析，传入价值分析的Visitor
+		WorthAnalyzeVisitor waVisitor = new WorthAnalyzeVisitor();
+		os.handleRequest(waVisitor);
 	}
 
 }
