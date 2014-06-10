@@ -23,13 +23,8 @@ public class Client {
 		c2.addChild(leaf3);
 		c2.addChild(leaf4);
 		
-		//创建ObjectStructure
-		ObjectStructure os = new ObjectStructure();
-		os.setRoot(root);
-		
-		//调用ObjectStructure来处理请求功能
 		Visitor psVisitor = new PrintNameVisitor();
-		os.handleRequest(psVisitor);
+		root.accept(psVisitor);
 	}
 
 }

@@ -39,9 +39,12 @@ public class Composite extends Component {
 		//回调访问者对象的相应方法
 		visitor.visitComposite(this);
 		//循环子元素，让子元素也接受访问
-		for (Component c : childComponents){
-			c.accept(visitor);
-		}
+//		for (Component c : childComponents){
+//			c.accept(visitor);
+//		}
 	}
-
+	
+	public List<Component> getChildComponents(){
+		return childComponents;
+	}
 }
